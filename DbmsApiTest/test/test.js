@@ -3,8 +3,9 @@ var assert = require("chai").assert;
 var baseURL = "https://abayh.com/api";
 
 describe("Abayh DBMS API", () => {
+
   describe("Response Headers", () => {
-    it("===> content-type shoud return application/json; charset=utf-8", done => {
+    it("content-type shoud return application/json; charset=utf-8", done => {
       request.get({ url: baseURL + "/products" }, (error, response, body) => {
         assert.equal(
           response.headers["content-type"],
@@ -201,25 +202,36 @@ describe("Abayh DBMS API", () => {
       done();
     });
 
-    it("Department ID data type should be number", done => {
+    it("Department data type should be string", done => {
       for (var o of obj) {
-        assert.typeOf(o.departmentID, "number");
+        assert.typeOf(o.department, "string");
       }
       done();
     });
 
-    it("Category ID data type should be number", done => {
+    it("Category data type should be string", done => {
       for (var o of obj) {
-        assert.typeOf(o.categoryID, "number");
+        assert.typeOf(o.category, "string");
       }
       done();
     });
 
-    it("Brand ID data type should be number", done => {
+    it("Brand data type should be string", done => {
       for (var o of obj) {
-        assert.typeOf(o.departmentID, "number");
+        assert.typeOf(o.department, "string");
       }
       done();
     });
   });
+
+  
+  describe("Delete Operations", () => {
+    it("Shoud delete the product with given id", done => {
+      request.delete({ url: baseURL + "/products/5" }, (error, response, body) => {
+        assert.equal(response.statusCode, 204);
+        done();
+      });
+    });
+  });
+
 });
