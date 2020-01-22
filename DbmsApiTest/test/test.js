@@ -228,7 +228,7 @@ describe("Abayh DBMS API", () => {
   describe("Delete Operations", () => {
     it("Shoud delete the product with given id", done => {
       request.delete({ url: baseURL + "/products/5" }, (error, response, body) => {
-        assert.equal(response.statusCode, 204);
+        assert.equal(response.statusCode, 200);
         done();
       });
     });
