@@ -1,6 +1,8 @@
-var request = require("request");
-var assert = require("chai").assert;
-var baseURL = "https://abayh.com/api";
+const request = require("request");
+const assert = require("chai").assert;
+const baseURL = "https://abayh.com/api";
+
+
 
 describe("Abayh DBMS API", () => {
 
@@ -24,16 +26,16 @@ describe("Abayh DBMS API", () => {
       });
     });
 
-    it("StatusCode shoud return 200 for /products/:id", done => {
-      request.get({ url: baseURL + "/products/7" }, (error, response, body) => {
+    it("StatusCode shoud return 200 for correct /byid/:id", done => {
+      request.get({ url: baseURL + "/byid/1" }, (error, response, body) => {
         assert.equal(response.statusCode, 200);
         done();
       });
     });
 
-    it("StatusCode shoud return 200 for /products/name/:name", done => {
+    it("StatusCode shoud return 200 for correct /byname/:name", done => {
       request.get(
-        { url: baseURL + "/products/name/iphonex" },
+        { url: baseURL + "/byname/Microvawe" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -41,9 +43,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("StatusCode shoud return 200 for /products/modelNumber/:modelNumber", done => {
+    it("StatusCode shoud return 200 for correct /bymodelNumber/:modelNumber", done => {
       request.get(
-        { url: baseURL + "/products/modelNumber/125A48EFX" },
+        { url: baseURL + "/bymodelNumber/125A48EFK" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -51,9 +53,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("StatusCode shoud return 200 for /products/brand/:brandName", done => {
+    it("StatusCode shoud return 200 for correct /bybrand/:brandName", done => {
       request.get(
-        { url: baseURL + "/products/brand/apple" },
+        { url: baseURL + "/bybrand/samsung" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -61,6 +63,7 @@ describe("Abayh DBMS API", () => {
       );
     });
   });
+
 
   describe("Bad Requests Status_Codes & Messages", () => {
     it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/thisendpointdoesnotexist)", done => {
@@ -73,9 +76,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/products/thisendpointdoesnotexist)", done => {
+    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/products/product/thisendpointdoesnotexist)", done => {
       request.get(
-        { url: baseURL + "/products/thisendpointdoesnotexist" },
+        { url: baseURL + "/products/product/thisendpointdoesnotexist" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -83,9 +86,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/products/name/thisendpointdoesnotexist)", done => {
+    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/byname/name/thisendpointdoesnotexist)", done => {
       request.get(
-        { url: baseURL + "/products/name/thisendpointdoesnotexist" },
+        { url: baseURL + "/byname/name/thisendpointdoesnotexist" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -93,9 +96,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/products/brand/thisendpointdoesnotexist)", done => {
+    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/bybrand/brand/thisendpointdoesnotexist)", done => {
       request.get(
-        { url: baseURL + "/products/brand/thisendpointdoesnotexist" },
+        { url: baseURL + "/bybrand/brand/thisendpointdoesnotexist" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -103,9 +106,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/products/modelnumber/thisendpointdoesnotexist)", done => {
+    it("Bad Request: StatusCode should return 404 for an endpoint which does not exits (/bymodelnumber/model/thisendpointdoesnotexist)", done => {
       request.get(
-        { url: baseURL + "/products/modelnumber/thisendpointdoesnotexist" },
+        { url: baseURL + "/bymodelnumber/model/thisendpointdoesnotexist" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -113,7 +116,7 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for product id which does not exits (/products/9999)", done => {
+    it("Bad Request: StatusCode should return 404 for product id which does not exits (/products/999989)", done => {
       request.get(
         { url: baseURL + "/products/9999" },
         (error, response, body) => {
@@ -123,9 +126,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for product name which does not exits (/products/name/nosuchname)", done => {
+    it("Bad Request: StatusCode should return 404 for product name which does not exits (/byname/nosuchname)", done => {
       request.get(
-        { url: baseURL + "/products/name/nosuchname" },
+        { url: baseURL + "/byname/nosuchname" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -133,9 +136,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for product model number which does not exits (/products/modelNumber/nosuchmodelnumber)", done => {
+    it("Bad Request: StatusCode should return 404 for product model number which does not exits (/bymodelNumber/nosuchmodelnumber)", done => {
       request.get(
-        { url: baseURL + "/products/modelNumber/nosuchmodelnumber" },
+        { url: baseURL + "/bymodelNumber/nosuchmodelnumber" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -143,9 +146,9 @@ describe("Abayh DBMS API", () => {
       );
     });
 
-    it("Bad Request: StatusCode should return 404 for product brand name which does not exits (/products/brand/nosuchbrand)", done => {
+    it("Bad Request: StatusCode should return 404 for product brand name which does not exits (/bybrand/nosuchbrand)", done => {
       request.get(
-        { url: baseURL + "/products/brand/nosuchbrand" },
+        { url: baseURL + "/bybrand/nosuchbrand" },
         (error, response, body) => {
           assert.equal(response.statusCode, 404);
           done();
@@ -153,6 +156,7 @@ describe("Abayh DBMS API", () => {
       );
     });
   });
+
 
   describe("Return_Data_Types", () => {
     var error = null;
@@ -224,14 +228,73 @@ describe("Abayh DBMS API", () => {
     });
   });
 
-  
+
+  let pname = "Apple Iphone " + Math.floor(Math.random() * 499) + 101 + "s";
+  console.log("Created: ", pname);
+
+  describe("Post Operations", () => {
+    it("Shoud post a new product to the db", done => {
+      request.post({
+        url: baseURL + "/products", form: {
+          "name": pname,
+          "price": 999,
+          "quantity": 1000,
+          "modelNumber": "125AEF20S",
+          "departmentID": 4,
+          "categoryID": 19,
+          "brandID": 5
+        }
+      },
+        (error, response, body) => {
+          assert.equal(response.statusCode, 200);
+          done();
+        });
+    });
+  });
+
+
+  let updatedName = "Apple Iphone " + Math.floor(Math.random() * 999) + 500 + "U";
+  console.log("Updated: ", updatedName);
+
+  describe("Put Operations", () => {
+    it("Shoud update a product with given name in the db", done => {
+      request.put({
+        url: baseURL + `/byname/${pname}`, form: {
+          "name": updatedName,
+          "price": 999,
+          "quantity": 1000,
+          "modelNumber": "125AEF20S",
+          "departmentID": 4,
+          "categoryID": 19,
+          "brandID": 5
+        }
+      },
+        (error, response, body) => {
+          assert.equal(response.statusCode, 200);
+          done();
+        });
+    });
+  });
+
+
+  console.log("Deleted: ", updatedName);
   describe("Delete Operations", () => {
-    it("Shoud delete the product with given id", done => {
-      request.delete({ url: baseURL + "/products/5" }, (error, response, body) => {
+    it("Shoud delete the product with given name", done => {
+      request.delete({ url: baseURL + `/byname/${updatedName}` }, (error, response, body) => {
         assert.equal(response.statusCode, 200);
         done();
       });
     });
   });
+
+
+  // describe("Delete Operations", () => {
+  //   it("Shoud delete the product with given id", done => {
+  //     request.delete({ url: baseURL + "/products/28" }, (error, response, body) => {
+  //       assert.equal(response.statusCode, 200);
+  //       done();
+  //     });
+  //   });
+  // });
 
 });
