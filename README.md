@@ -2,8 +2,8 @@
 
 #Init
 
-- To install required dependencies, run "npm install" command in DbmsApiTest folder
+- To install required dependencies, run "npm install" command
 
 #Run
 
-- To run the tests, run "npm test" command in DbmsApiTest folder
+- To run the tests, run "npm test" command

@@ -1,4 +1,4 @@
-./DbmsApiTest/node_modules
-/DbmsApiTest/node_modules
-DbmsApiTest/node_modules
+node_modules
+/node_modules
+./node_modules
 

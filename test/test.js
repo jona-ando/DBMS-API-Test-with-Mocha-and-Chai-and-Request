@@ -230,7 +230,7 @@ describe("Abayh DBMS API", () => {
 
 
   let pname = "Apple Iphone " + Math.floor(Math.random() * 499) + 101 + "s";
-  console.log("Created: ", pname);
+  // console.log("Created: ", pname);
 
   describe("Post Operations", () => {
     it("Shoud post a new product to the db", done => {
@@ -254,7 +254,7 @@ describe("Abayh DBMS API", () => {
 
 
   let updatedName = "Apple Iphone " + Math.floor(Math.random() * 999) + 500 + "U";
-  console.log("Updated: ", updatedName);
+  // console.log("Updated: ", updatedName);
 
   describe("Put Operations", () => {
     it("Shoud update a product with given name in the db", done => {
@@ -277,7 +277,7 @@ describe("Abayh DBMS API", () => {
   });
 
 
-  console.log("Deleted: ", updatedName);
+  // console.log("Deleted: ", updatedName);
   describe("Delete Operations", () => {
     it("Shoud delete the product with given name", done => {
       request.delete({ url: baseURL + `/byname/${updatedName}` }, (error, response, body) => {
