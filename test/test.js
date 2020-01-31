@@ -3,7 +3,6 @@ const assert = require("chai").assert;
 const baseURL = "https://abayh.com/api";
 
 
-
 describe("Abayh DBMS API", () => {
 
   describe("Response Headers", () => {
@@ -27,7 +26,7 @@ describe("Abayh DBMS API", () => {
     });
 
     it("StatusCode shoud return 200 for correct /byid/:id", done => {
-      request.get({ url: baseURL + "/byid/1" }, (error, response, body) => {
+      request.get({ url: baseURL + "/byid/4" }, (error, response, body) => {
         assert.equal(response.statusCode, 200);
         done();
       });
@@ -35,7 +34,7 @@ describe("Abayh DBMS API", () => {
 
     it("StatusCode shoud return 200 for correct /byname/:name", done => {
       request.get(
-        { url: baseURL + "/byname/Microvawe" },
+        { url: baseURL + "/byname/Monitor" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -45,7 +44,7 @@ describe("Abayh DBMS API", () => {
 
     it("StatusCode shoud return 200 for correct /bymodelNumber/:modelNumber", done => {
       request.get(
-        { url: baseURL + "/bymodelNumber/125A48EFK" },
+        { url: baseURL + "/bymodelNumber/125A48EFG" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -55,7 +54,7 @@ describe("Abayh DBMS API", () => {
 
     it("StatusCode shoud return 200 for correct /bybrand/:brandName", done => {
       request.get(
-        { url: baseURL + "/bybrand/samsung" },
+        { url: baseURL + "/bybrand/asus" },
         (error, response, body) => {
           assert.equal(response.statusCode, 200);
           done();
@@ -191,6 +190,7 @@ describe("Abayh DBMS API", () => {
       }
       done();
     });
+    
 
     it("Quantity data type should be number", done => {
       for (var o of obj) {
@@ -287,14 +287,5 @@ describe("Abayh DBMS API", () => {
     });
   });
 
-
-  // describe("Delete Operations", () => {
-  //   it("Shoud delete the product with given id", done => {
-  //     request.delete({ url: baseURL + "/products/28" }, (error, response, body) => {
-  //       assert.equal(response.statusCode, 200);
-  //       done();
-  //     });
-  //   });
-  // });
 
 });
